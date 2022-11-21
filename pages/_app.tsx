@@ -8,6 +8,8 @@ import {
 } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+import CssBaseline from '@mui/material/CssBaseline';
+
 import '../styles/globals.css';
 
 function MyApp({
@@ -19,6 +21,7 @@ function MyApp({
   return (
     <QueryClientProvider client={client}>
       <Hydrate state={pageProps?.dehydratedState}>
+        <CssBaseline />
         <Component {...pageProps} />
       </Hydrate>
       <ReactQueryDevtools initialIsOpen={false} />
