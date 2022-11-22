@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import '../styles/globals.css';
+import '../styles/theme.css';
 
 function MyApp({
   Component,
