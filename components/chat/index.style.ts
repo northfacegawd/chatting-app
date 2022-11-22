@@ -5,7 +5,7 @@ export const ChatItemWrapper = styled.li`
   display: flex;
   align-items: center;
   width: 350px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--gray-100);
   padding: 0.5em 1em;
   cursor: pointer;
   transition: background-color 200ms ease-out;

@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import React from 'react';
 
-import ChatItem from '../components/chat';
+import ChatSection from '@components/chat/section';
 
 const Home: NextPage = () => {
   return (
     <div>
-      <ChatItem />
+      <ChatSection />
     </div>
   );
 };

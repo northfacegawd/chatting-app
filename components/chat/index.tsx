@@ -1,8 +1,5 @@
 import React from 'react';
 
-import Avatar from '@mui/material/Avatar';
-import avatar from '@public/images/avatar.svg';
-
 import {
   BorderAvatar,
   ChatItemWrapper,
@@ -14,7 +11,7 @@ import {
 export default function ChatItem() {
   return (
     <ChatItemWrapper>
-      <BorderAvatar alt="Default" src={avatar} />
+      <BorderAvatar alt="Default" src="/images/avatar.svg" />
       <MessageInfo>
         <Name>최예슬</Name>
         <Time dateTime="2016-12-13">2016.12.13</Time>
