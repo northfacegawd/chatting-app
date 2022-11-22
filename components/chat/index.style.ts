@@ -4,7 +4,6 @@ import Avatar from '@mui/material/Avatar';
 export const ChatItemWrapper = styled.li`
   display: flex;
   align-items: center;
-  width: 350px;
   border-bottom: 1px solid var(--gray-100);
   padding: 0.5em 1em;
   cursor: pointer;

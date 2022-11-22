@@ -7,6 +7,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 
 import {
+  ChatCount,
   ChatSectionHeader,
   ChatSectionWrapper,
   MoreChattingButton,
@@ -17,7 +18,7 @@ export default function ChatSection() {
   return (
     <ChatSectionWrapper>
       <ChatSectionHeader>
-        안 읽은 대화(2)
+        <ChatCount>안 읽은 대화(2)</ChatCount>
         <Button variant="contained" startIcon={<Add />}>
           새로운 메세지
         </Button>
