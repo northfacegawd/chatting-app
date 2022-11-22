@@ -12,6 +12,9 @@ export const ChatItemWrapper = styled.li`
   &:hover {
     background-color: var(--gray-100);
   }
+  &:last-of-type {
+    border-bottom: none;
+  }
 `;
 
 export const BorderAvatar = styled(Avatar)`
