@@ -42,6 +42,13 @@
     {
       "files": ["pages/_document.tsx"],
       "rules": { "react/jsx-no-useless-fragment": "off" }
+    },
+    {
+      "files": ["lib/server/prismadb.ts"],
+      "rules": {
+        "vars-on-top": "off",
+        "no-var": "off"
+      }
     }
   ],
   "settings": {
