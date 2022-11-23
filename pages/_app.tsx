@@ -10,6 +10,7 @@ import {
 } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+import Layout from '@components/layout';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import '../styles/globals.css';
@@ -26,7 +27,9 @@ function MyApp({
       <Hydrate state={pageProps?.dehydratedState}>
         <CssBaseline />
         <SessionProvider session={pageProps.session}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </SessionProvider>
       </Hydrate>
       <ReactQueryDevtools initialIsOpen={false} />
