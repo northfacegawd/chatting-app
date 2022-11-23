@@ -39,13 +39,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Chat          Chat[]
+  ChatRoom      ChatRoom[]
 }
 
 model VerificationToken {
@@ -54,4 +56,23 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Chat {
+  id         String    @id @default(cuid())
+  message    String
+  createAt   DateTime  @default(now())
+  updateAt   DateTime  @updatedAt
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  ChatRoom   ChatRoom? @relation(fields: [chatRoomId], references: [id], onDelete: Cascade)
+  chatRoomId String?
+  isRead     Boolean   @default(false)
+}
+
+model ChatRoom {
+  id       String   @id @default(cuid())
+  createAt DateTime @default(now())
+  chats    Chat[]
+  users    User[]
 }
