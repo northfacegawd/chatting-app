@@ -8,8 +8,6 @@ import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-const settings = ['Profile', 'Logout'];
-
 export default function Header() {
   const { data, status } = useSession();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
