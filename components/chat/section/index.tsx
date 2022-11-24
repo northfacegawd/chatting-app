@@ -2,6 +2,7 @@ import React from 'react';
 
 import ChatList from '@components/chat/list';
 import Search from '@components/common/auto-complete';
+import useUserList from '@hooks/useUserList';
 import Add from '@mui/icons-material/Add';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
@@ -15,6 +16,10 @@ import {
 } from './index.style';
 
 export default function ChatSection() {
+  const { data } = useUserList('chuck5732590');
+
+  console.log(data);
+
   return (
     <ChatSectionWrapper>
       <ChatSectionHeader>
