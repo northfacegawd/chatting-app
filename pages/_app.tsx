@@ -1,3 +1,5 @@
+import { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import React, { useState } from 'react';
 import {
@@ -8,6 +10,7 @@ import {
 } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+import Layout from '@components/layout';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import '../styles/globals.css';
@@ -16,14 +19,18 @@ import '../styles/theme.css';
 function MyApp({
   Component,
   pageProps,
-}: AppProps<{ dehydratedState: DehydratedState }>) {
+}: AppProps<{ dehydratedState: DehydratedState; session: Session }>) {
   const [client] = useState(new QueryClient());
 
   return (
     <QueryClientProvider client={client}>
       <Hydrate state={pageProps?.dehydratedState}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <SessionProvider session={pageProps.session}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SessionProvider>
       </Hydrate>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
