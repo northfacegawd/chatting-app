@@ -1,11 +1,13 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import Avatar from '@mui/material/Avatar';
 
 interface MessageProps {
   position: 'left' | 'right';
 }
 
 export const MessageWrapper = styled.div<MessageProps>`
+  position: relative;
   display: flex;
   flex-direction: ${({ position }) =>
     position === 'left' ? 'row' : 'row-reverse'};
@@ -15,14 +17,13 @@ export const MessageWrapper = styled.div<MessageProps>`
 export const MessageInfo = styled.div<MessageProps>`
   display: flex;
   flex-direction: column;
+  padding: 0 50px;
   ${({ position }) =>
     position === 'left'
       ? css`
-          margin: 0 0 0 0.8em;
           align-items: flex-start;
         `
       : css`
-          margin: 0 0.8em 0 0;
           align-items: flex-end;
         `}
 `;
@@ -40,4 +41,8 @@ export const Message = styled.p`
   font-size: 0.95rem;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 500;
+`;
+
+export const ChatAvatar = styled(Avatar)`
+  position: absolute;
 `;

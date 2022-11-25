@@ -8,7 +8,7 @@ export const WriteForm = styled.form`
   border: 1px solid var(--gray-100);
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
+  border-radius: 10px;
 `;
 
 export const MessageArea = styled.textarea`
@@ -19,6 +19,7 @@ export const MessageArea = styled.textarea`
   outline: none;
   border: none;
   border-bottom: 1px solid var(--gray-100);
+  border-radius: 10px 10px 0 0;
 `;
 
 export const ActionBox = styled.div`
@@ -27,4 +28,5 @@ export const ActionBox = styled.div`
   align-items: center;
   padding: 0.5em;
   background-color: var(--gray-50);
+  border-radius: 0 0 10px 10px;
 `;

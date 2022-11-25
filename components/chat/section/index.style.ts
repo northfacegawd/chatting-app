@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 export const ChatSectionWrapper = styled.section`
   border-right: 1px solid var(--gray-100);
   width: 400px;
+  position: relative;
 `;
 
 export const ChatSectionHeader = styled.div`
@@ -32,7 +33,15 @@ export const SearchBox = styled.div`
 
 export const MoreChattingButton = styled(Button)`
   width: 100%;
-  height: 60px;
+  background-color: white;
+  height: 70px;
   border-top: 1px solid var(--gray-100);
   border-radius: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+`;
+
+export const CreateChatButton = styled(Button)`
+  border-radius: 25px;
 `;
