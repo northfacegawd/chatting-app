@@ -8,6 +8,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const email = req.query.email?.toString();
   const session = await getSession({ req });
   try {
+    if (!email?.trim()) return res.status(200).json({ ok: true, userList: [] });
     const userList = await client.user.findMany({
       where: {
         email: { contains: email },
