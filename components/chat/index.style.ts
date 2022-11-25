@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import Avatar from '@mui/material/Avatar';
 
 export const ChatItemWrapper = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--gray-100);
@@ -10,6 +11,18 @@ export const ChatItemWrapper = styled.li`
   transition: background-color 200ms ease-out;
   &:hover {
     background-color: var(--gray-100);
+    &::after {
+      background-color: #4e61ff;
+    }
+  }
+  &::after {
+    position: absolute;
+    left: 2px;
+    top: 0;
+    content: ' ';
+    width: 3px;
+    height: 100%;
+    transition: background-color 200ms ease-out;
   }
   &:last-of-type {
     border-bottom: none;
