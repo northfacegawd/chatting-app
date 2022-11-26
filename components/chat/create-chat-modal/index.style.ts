@@ -18,3 +18,10 @@ export const ModalContents = styled.div`
 export const ModalTitle = styled.h4`
   margin-bottom: 1em;
 `;
+
+export const ErrorMessage = styled.p`
+  font-size: 0.8rem;
+  color: red;
+  font-weight: 500;
+  text-align: center;
+`;
