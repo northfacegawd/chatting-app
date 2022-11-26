@@ -59,4 +59,7 @@ export const EmptyChatContents = styled.div`
     font-size: 1.2rem;
     color: var(--primary);
   }
+  @media (max-width: 735px) {
+    display: none;
+  }
 `;
