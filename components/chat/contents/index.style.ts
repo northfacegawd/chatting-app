@@ -18,4 +18,16 @@ export const ChatContentsWrapper = styled.section`
   }
 `;
 
-export const EmptyChatContents = styled.div``;
+export const EmptyChatContents = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1em;
+  p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #4e61ff;
+  }
+`;
