@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import ChevronLeft from '@components/common/icons/chevron-left';
-
 import ChatMessage from '../message';
 import {
   BackButton,
