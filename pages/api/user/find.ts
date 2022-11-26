@@ -8,7 +8,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const email = req.query.email?.toString();
   const session = await getSession({ req });
   try {
-    if (!email?.trim()) return res.status(200).json({ ok: true, userList: [] });
+    if (!email?.trim()) {
+      const randomUser = await client.user.findMany({
+        where: {
+          email: { not: session?.user?.email },
+        },
+        take: 20,
+      });
+      return res.status(200).json({ ok: true, userList: randomUser });
+    }
     const userList = await client.user.findMany({
       where: {
         email: { contains: email },
@@ -18,6 +26,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           },
         },
       },
+      take: 20,
     });
     return res.status(200).json({ ok: true, userList });
   } catch (error) {
