@@ -1,9 +1,8 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-import useUserList from '@hooks/useUserList';
-import Autocomplete from '@mui/material/Autocomplete';
-import CircularProgress from '@mui/material/CircularProgress';
-import TextField from '@mui/material/TextField';
+import SearchUser from '@components/common/search-user';
+import { Box } from '@mui/material';
+import Button from '@mui/material/Button';
 
 import { ModalContents, ModalTitle, ModalWrapper } from './index.style';
 
@@ -16,40 +15,25 @@ export default function CreateChatModal({
   open,
   onClose,
 }: CreateChatModalProps) {
-  const [email, setEmail] = useState<string>('');
-  const { data, isLoading } = useUserList(email);
+  const [selectedEmail, setSelectedEmail] = useState<string>('');
 
-  const onResetEamail = () => setEmail('');
+  const onSelect = useCallback((email: string) => {
+    setSelectedEmail(email);
+  }, []);
 
   return (
     <ModalWrapper open={open} onClose={onClose} style={{ padding: '' }}>
       <ModalContents>
         <ModalTitle>받는 사람의 이메일을 입력하세요</ModalTitle>
-        <Autocomplete
-          loading={isLoading}
-          onOpen={onResetEamail}
-          onClose={onResetEamail}
-          options={(data ?? []).map((user) => user.email)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              label="Email"
-              InputProps={{
-                ...params.InputProps,
-                endAdornment: (
-                  <>
-                    {isLoading ? (
-                      <CircularProgress color="inherit" size={20} />
-                    ) : null}
-                    {params.InputProps.endAdornment}
-                  </>
-                ),
-              }}
-            />
-          )}
-        />
+        <SearchUser onSelect={onSelect} />
+        <Box display="flex" marginTop="1em" columnGap="1em">
+          <Button fullWidth variant="outlined">
+            닫기
+          </Button>
+          <Button disabled={!selectedEmail} variant="contained" fullWidth>
+            채팅방 만들기
+          </Button>
+        </Box>
       </ModalContents>
     </ModalWrapper>
   );
