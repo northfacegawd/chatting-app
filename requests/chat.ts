@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { Chat, ChatRoom, User } from '@prisma/client';
 
-interface ChatRoomWithUser extends ChatRoom {
+export interface ChatRoomWithUser extends ChatRoom {
   users: User[];
   chats: Chat[];
 }
@@ -23,9 +23,8 @@ export const fetchChatList = async () => {
 };
 
 export const createChatRoom = async (email: string) => {
-  const { data } = await axios.post<CreateChatRoomResponse>(
-    '/api/chat/create',
-    { email },
-  );
+  const { data } = await axios.post<CreateChatRoomResponse>('/api/chat', {
+    email,
+  });
   return data.chatRoom;
 };

@@ -1,4 +1,8 @@
+import Link from 'next/link';
 import React from 'react';
+
+import useChatRoomInfo from '@hooks/useChatInfo';
+import { ChatRoomWithUser } from '@requests/chat';
 
 import {
   BorderAvatar,
@@ -8,26 +12,23 @@ import {
   Time,
 } from './index.style';
 
-interface ChatItemProps {
-  userName: string;
-  lastMessage: string;
-  date: Date;
-}
+interface ChatItemProps extends ChatRoomWithUser {}
 
-export default function ChatItem({
-  date,
-  lastMessage,
-  userName,
-}: ChatItemProps) {
+export default function ChatItem(props: ChatRoomWithUser) {
+  const { id } = props;
+  const { date, lastMessage, name, unReadMessage } = useChatRoomInfo(props);
+
   return (
-    <ChatItemWrapper>
-      <BorderAvatar alt="Default" src="/images/avatar.svg" />
-      <MessageInfo>
-        <Name>{userName}</Name>
-        <Time dateTime="2016-12-13">{date?.toISOString?.()}</Time>
-        <br />
-        {lastMessage}
-      </MessageInfo>
-    </ChatItemWrapper>
+    <Link href={`/${id}`}>
+      <ChatItemWrapper>
+        <BorderAvatar alt="Default" src="/images/avatar.svg" />
+        <MessageInfo>
+          <Name>{name}</Name>
+          {date && <Time>{date}</Time>}
+          <br />
+          {lastMessage ?? '채팅 내역이 존재하지 않습니다.'}
+        </MessageInfo>
+      </ChatItemWrapper>
+    </Link>
   );
 }

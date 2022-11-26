@@ -21,7 +21,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     });
     if (findChatRoom)
-      return res.status(400).json({ ok: true, chatRoom: findChatRoom });
+      return res.status(200).json({ ok: true, chatRoom: findChatRoom });
 
     const chatRoom = await client.chatRoom.create({
       data: {
