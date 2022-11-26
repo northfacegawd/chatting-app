@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 
 export const ChatSectionWrapper = styled.section`
   border-right: 1px solid var(--gray-100);
-  width: 400px;
+  min-width: 350px;
   position: relative;
 `;
 
