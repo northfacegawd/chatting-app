@@ -30,9 +30,7 @@ function MyApp({
         <CssBaseline />
         <SessionProvider session={pageProps.session}>
           <ThemeProvider theme={theme}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <Component {...pageProps} />
           </ThemeProvider>
         </SessionProvider>
       </Hydrate>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import useChatRoomInfo from '@hooks/useChatInfo';
@@ -16,11 +17,12 @@ interface ChatItemProps extends ChatRoomWithUser {}
 
 export default function ChatItem(props: ChatRoomWithUser) {
   const { id } = props;
-  const { date, lastMessage, name, unReadMessage } = useChatRoomInfo(props);
+  const { date, lastMessage, name } = useChatRoomInfo(props);
+  const router = useRouter();
 
   return (
     <Link href={`/${id}`}>
-      <ChatItemWrapper>
+      <ChatItemWrapper active={id === router.query?.chatRoomId}>
         <BorderAvatar alt="Default" src="/images/avatar.svg" />
         <MessageInfo>
           <Name>{name}</Name>

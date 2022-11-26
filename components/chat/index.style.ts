@@ -1,7 +1,12 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Avatar from '@mui/material/Avatar';
 
-export const ChatItemWrapper = styled.li`
+interface ChatItemWrapperProps {
+  active?: boolean;
+}
+
+export const ChatItemWrapper = styled.li<ChatItemWrapperProps>`
   position: relative;
   display: flex;
   align-items: center;
@@ -12,7 +17,7 @@ export const ChatItemWrapper = styled.li`
   &:hover {
     background-color: var(--gray-100);
     &::after {
-      background-color: #4e61ff;
+      background-color: var(--primary);
     }
   }
   &::after {
@@ -27,6 +32,14 @@ export const ChatItemWrapper = styled.li`
   &:last-of-type {
     border-bottom: none;
   }
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: var(--gray-100);
+      &::after {
+        background-color: var(--primary);
+      }
+    `}
 `;
 
 export const BorderAvatar = styled(Avatar)`
@@ -53,4 +66,11 @@ export const Time = styled.time`
   font-size: 0.8rem;
   margin-left: 0.5em;
   color: rgba(0, 0, 0, 0.5);
+`;
+
+export const SkeletonWrapper = styled.li`
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-100);
+  padding: 0.5em 1em;
 `;

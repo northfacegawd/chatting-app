@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 
 import ChatList from '@components/chat/list';
@@ -13,6 +14,7 @@ import {
 
 export default function ChatSection() {
   const [open, setOpen] = useState<boolean>(false);
+  const router = useRouter();
 
   const onClose = useCallback(() => {
     setOpen(false);
@@ -20,7 +22,7 @@ export default function ChatSection() {
 
   return (
     <>
-      <ChatSectionWrapper>
+      <ChatSectionWrapper home={router.pathname === '/'}>
         <ChatSectionHeader>
           <ChatCount>안 읽은 대화(2)</ChatCount>
           <CreateChatButton
