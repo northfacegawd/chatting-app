@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/react';
 import React, { useMemo, useState } from 'react';
 
 import ChatItem from '@components/chat';
@@ -11,10 +10,11 @@ import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
 
 import { MoreChattingButton, SearchBox } from '../section/index.style';
+import ChatItemSkeleton from '../skeleton';
 import { ChatListWrapper } from './index.style';
 
 export default function ChatList() {
-  const { data } = useChatList();
+  const { data, isLoading } = useChatList();
   const [keyword, setKeyword] = useState('');
 
   const chatRooms = useMemo(() => {
@@ -53,9 +53,11 @@ export default function ChatList() {
         </Paper>
       </SearchBox>
       <ChatListWrapper>
-        {chatRooms.map((item) => (
-          <ChatItem key={item.id} {...item} />
-        ))}
+        {isLoading
+          ? Array.from({ length: 3 }).map((_, i) => (
+              <ChatItemSkeleton key={(i + 1).toString()} />
+            ))
+          : chatRooms.map((item) => <ChatItem key={item.id} {...item} />)}
       </ChatListWrapper>
       <MoreChattingButton endIcon={<ExpandMore />} disabled>
         이전 대화 불러오기
