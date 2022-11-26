@@ -17,7 +17,7 @@ export const ChatItemWrapper = styled.li<ChatItemWrapperProps>`
   &:hover {
     background-color: var(--gray-100);
     &::after {
-      background-color: #4e61ff;
+      background-color: var(--primary);
     }
   }
   &::after {
@@ -37,7 +37,7 @@ export const ChatItemWrapper = styled.li<ChatItemWrapperProps>`
     css`
       background-color: var(--gray-100);
       &::after {
-        background-color: #4e61ff;
+        background-color: var(--primary);
       }
     `}
 `;

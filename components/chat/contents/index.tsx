@@ -1,14 +1,32 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
+import ChevronLeft from '@components/common/icons/chevron-left';
+
 import ChatMessage from '../message';
-import { ChatContentsWrapper } from './index.style';
+import {
+  BackButton,
+  ChatContentsWrapper,
+  ChatRoomInfo,
+  ChatsBox,
+} from './index.style';
 import Write from './write';
 
 export default function ChatContents() {
+  const router = useRouter();
+
+  const moveHome = () => router.push('/');
+
   return (
     <ChatContentsWrapper>
-      <ChatMessage position="left" />
-      <ChatMessage position="right" />
+      <ChatRoomInfo>
+        <BackButton onClick={moveHome} />
+        <p>최예슬(chuck5732590@gmail.com)</p>
+      </ChatRoomInfo>
+      <ChatsBox>
+        <ChatMessage position="left" />
+        <ChatMessage position="right" />
+      </ChatsBox>
       <Write />
     </ChatContentsWrapper>
   );
