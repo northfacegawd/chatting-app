@@ -14,3 +14,7 @@ export const ModalContents = styled.div`
   border-radius: 6px;
   width: 400px;
 `;
+
+export const ModalTitle = styled.h4`
+  margin-bottom: 1em;
+`;
