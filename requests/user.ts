@@ -7,7 +7,7 @@ interface UsersResponse {
   ok: boolean;
 }
 
-export const fetchUsers = async (email: string) => {
+export const fetchUsers = async (email?: string) => {
   const { data } = await axios.get<UsersResponse>('/api/user/find', {
     params: { email },
   });

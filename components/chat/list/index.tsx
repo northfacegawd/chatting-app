@@ -16,12 +16,14 @@ import { ChatListWrapper } from './index.style';
 export default function ChatList() {
   const { data } = useChatList();
   const [keyword, setKeyword] = useState('');
-  const { data: session } = useSession();
 
   const chatRooms = useMemo(() => {
     if (!keyword.trim()) return data ?? [];
-    return (data ?? []).filter(({ users }) =>
-      users.filter(({ id }) => id.includes(keyword)),
+    return (data ?? []).filter(
+      ({ users }) =>
+        !!users.find(({ name }) =>
+          name?.toLowerCase().includes(keyword.toLowerCase()),
+        ),
     );
   }, [data, keyword]);
 
@@ -52,16 +54,7 @@ export default function ChatList() {
       </SearchBox>
       <ChatListWrapper>
         {chatRooms.map((item) => (
-          <ChatItem
-            key={item.id}
-            date={item.chats[0].createAt}
-            lastMessage={item.chats[0].message}
-            userName={
-              item.users.filter(
-                (user) => user.email !== session?.user?.email,
-              )[0]?.name ?? '최예슬 '
-            }
-          />
+          <ChatItem key={item.id} {...item} />
         ))}
       </ChatListWrapper>
       <MoreChattingButton endIcon={<ExpandMore />} disabled>
