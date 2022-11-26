@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import React, { useMemo, useState } from 'react';
 
 import ChatItem from '@components/chat';
 import useChatList from '@hooks/useChatList';
@@ -13,14 +14,22 @@ import { MoreChattingButton, SearchBox } from '../section/index.style';
 import { ChatListWrapper } from './index.style';
 
 export default function ChatList() {
-  const [keyword, setKeyword] = useState('');
   const { data } = useChatList();
+  const [keyword, setKeyword] = useState('');
+  const { data: session } = useSession();
+
+  const chatRooms = useMemo(() => {
+    if (!keyword.trim()) return data ?? [];
+    return (data ?? []).filter(({ users }) =>
+      users.filter(({ id }) => id.includes(keyword)),
+    );
+  }, [data, keyword]);
 
   return (
     <>
       <SearchBox>
         <Paper
-          component="form"
+          component="div"
           sx={{
             p: '2px 4px',
             display: 'flex',
@@ -42,8 +51,17 @@ export default function ChatList() {
         </Paper>
       </SearchBox>
       <ChatListWrapper>
-        {Array.from({ length: 10 })?.map((_, i) => (
-          <ChatItem key={(i + 1).toString()} />
+        {chatRooms.map((item) => (
+          <ChatItem
+            key={item.id}
+            date={item.chats[0].createAt}
+            lastMessage={item.chats[0].message}
+            userName={
+              item.users.filter(
+                (user) => user.email !== session?.user?.email,
+              )[0]?.name ?? '최예슬 '
+            }
+          />
         ))}
       </ChatListWrapper>
       <MoreChattingButton endIcon={<ExpandMore />} disabled>
