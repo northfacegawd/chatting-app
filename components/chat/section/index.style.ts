@@ -5,6 +5,10 @@ export const ChatSectionWrapper = styled.section`
   border-right: 1px solid var(--gray-100);
   min-width: 350px;
   position: relative;
+  @media (max-width: 735px) {
+    min-width: unset;
+    width: 100%;
+  }
 `;
 
 export const ChatSectionHeader = styled.div`

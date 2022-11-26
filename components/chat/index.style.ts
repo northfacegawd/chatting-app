@@ -1,7 +1,12 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Avatar from '@mui/material/Avatar';
 
-export const ChatItemWrapper = styled.li`
+interface ChatItemWrapperProps {
+  active?: boolean;
+}
+
+export const ChatItemWrapper = styled.li<ChatItemWrapperProps>`
   position: relative;
   display: flex;
   align-items: center;
@@ -27,6 +32,14 @@ export const ChatItemWrapper = styled.li`
   &:last-of-type {
     border-bottom: none;
   }
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: var(--gray-100);
+      &::after {
+        background-color: #4e61ff;
+      }
+    `}
 `;
 
 export const BorderAvatar = styled(Avatar)`
