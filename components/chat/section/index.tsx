@@ -33,7 +33,7 @@ export default function ChatSection() {
         </ChatSectionHeader>
         <ChatList />
       </ChatSectionWrapper>
-      <CreateChatModal open={open} onClose={onClose} />
+      {open && <CreateChatModal open={open} onClose={onClose} />}
     </>
   );
 }
