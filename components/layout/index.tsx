@@ -1,12 +1,25 @@
 import React, { PropsWithChildren } from 'react';
 
-import Header from './header';
+import ChatSection from '@components/chat/section';
 
-export default function Layout({ children }: PropsWithChildren) {
+import Header from './header';
+import { Main } from './index.style';
+
+interface LayoutProps {
+  renderChatSection: boolean;
+}
+
+export default function Layout({
+  children,
+  renderChatSection,
+}: PropsWithChildren<LayoutProps>) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <Main>
+        {renderChatSection && <ChatSection />}
+        {children}
+      </Main>
       <footer />
     </>
   );
