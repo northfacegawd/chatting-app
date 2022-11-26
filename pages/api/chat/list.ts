@@ -15,6 +15,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           },
         },
       },
+      include: {
+        chats: true,
+        users: true,
+      },
     });
     return res.status(200).json({ ok: true, chatList });
   } catch (error) {
