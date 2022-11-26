@@ -1,14 +1,26 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 
-export const ChatSectionWrapper = styled.section`
+export const ChatSectionWrapper = styled.section<{ home?: boolean }>`
   border-right: 1px solid var(--gray-100);
   min-width: 350px;
   position: relative;
+  height: calc(100vh - 64px);
   @media (max-width: 735px) {
     min-width: unset;
     width: 100%;
   }
+  @media (max-width: 599px) {
+    height: calc(100vh - 56px);
+  }
+  ${({ home }) =>
+    !home &&
+    css`
+      @media (max-width: 735px) {
+        display: none;
+      }
+    `}
 `;
 
 export const ChatSectionHeader = styled.div`
