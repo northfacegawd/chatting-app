@@ -1,9 +1,14 @@
 import axios from 'axios';
 
-import { ChatRoom } from '@prisma/client';
+import { Chat, ChatRoom, User } from '@prisma/client';
+
+interface ChatRoomWithUser extends ChatRoom {
+  users: User[];
+  chats: Chat[];
+}
 
 interface ChatListResponse {
-  chatList: ChatRoom[];
+  chatList: ChatRoomWithUser[];
   ok: boolean;
 }
 

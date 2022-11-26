@@ -8,15 +8,25 @@ import {
   Time,
 } from './index.style';
 
-export default function ChatItem() {
+interface ChatItemProps {
+  userName: string;
+  lastMessage: string;
+  date: Date;
+}
+
+export default function ChatItem({
+  date,
+  lastMessage,
+  userName,
+}: ChatItemProps) {
   return (
     <ChatItemWrapper>
       <BorderAvatar alt="Default" src="/images/avatar.svg" />
       <MessageInfo>
-        <Name>최예슬</Name>
-        <Time dateTime="2016-12-13">2016.12.13</Time>
+        <Name>{userName}</Name>
+        <Time dateTime="2016-12-13">{date?.toISOString?.()}</Time>
         <br />
-        안녕하세요 서류지원 합격한 최예슬 입니다. 우선 좋은소식 감사드립니다
+        {lastMessage}
       </MessageInfo>
     </ChatItemWrapper>
   );
