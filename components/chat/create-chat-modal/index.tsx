@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
-import { useMutation } from 'react-query';
 
 import SearchUser from '@components/common/search-user';
-import useCreateChatRoom from '@hooks/useCreateChatRoom';
+import useCreateChatRoom from '@hooks/requests/post/useCreateChatRoom';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 

@@ -19,6 +19,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         id: true,
         chats: {
           take: 1,
+          orderBy: {
+            createAt: 'desc',
+          },
         },
         users: {
           where: {

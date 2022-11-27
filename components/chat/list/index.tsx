@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import ChatItem from '@components/chat';
-import useChatList from '@hooks/useChatRooms';
+import useChatRooms from '@hooks/requests/get/useChatRooms';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
 import Divider from '@mui/material/Divider';
@@ -14,7 +14,7 @@ import ChatItemSkeleton from '../skeleton';
 import { ChatListWrapper } from './index.style';
 
 export default function ChatList() {
-  const { data, isLoading } = useChatList();
+  const { data, isLoading } = useChatRooms();
   const [keyword, setKeyword] = useState('');
 
   const chatRooms = useMemo(() => {

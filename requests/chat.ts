@@ -60,3 +60,15 @@ export const fetchChats = async (id: string) => {
   });
   return data.chats;
 };
+
+interface CountResponse {
+  ok: boolean;
+  unReadCount: number;
+}
+
+export const fetchCount = async (id?: string) => {
+  const { data } = await axios.get<CountResponse>('/api/chat/count', {
+    params: { id },
+  });
+  return data.unReadCount;
+};

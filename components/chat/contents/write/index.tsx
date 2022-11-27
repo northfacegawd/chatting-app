@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import useMutation from '@hooks/useMutation';
+import useMutation from '@hooks/requests/post/useMutation';
 import Button from '@mui/material/Button';
 import { Chat } from '@prisma/client';
 
