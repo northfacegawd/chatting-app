@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 간단한 1:1 채팅 사이트
 
-## Getting Started
+## 개요
 
-First, run the development server:
+로그인한 사용자끼리 1:1 채팅을 할 수 있는 사이트 입니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 개발
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 구현 사항
+* 소셜 로그인 구현
+* 채팅 생성 구현
+* 유저 검색 구현
+* 채팅방을 선택 구현
+* 1:1 채팅 구현
+* 안 읽은 메시지 알림 구현 (실시간으로 바뀔 수 있게 개발중)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 기술 스택
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| 속성          | 값                                                                                                                                                   |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 프레임워크    | [NextJS](https://nextjs.org/)                                                                                                                        |
+| 패키지 매니저 | [npm](https://www.npmjs.com/)                                                                                                                        |
+| 언어          | [Typescript](https://www.typescriptlang.org/)                                                                                                        |
+| 데이터베이스,ORM  | [Postgresql](https://www.postgresql.org/), [Prisma](https://www.prisma.io/)                                                                                                 |
+| 상태관리 라이브러리| [React Query](https://www.npmjs.com/package/react-query)                                                                                          |
+| 통신           | [SocketIO](https://socket.io/), [Axios](https://axios-http.com/docs/intro)                                                                        |
+| 스타일        | [MUI](https://mui.com/), [Emotion](https://emotion.sh/docs/introduction)                                                                                                 |
+| 코드 퀄리티   | [eslint](https://eslint.org/), [prettier](https://prettier.io/)                                                                                      |
+| 코드 관리     | [git](https://git-scm.com/) & [github](https://www.github.com/)                                                                                      |
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### 환경 세팅
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[해당 문서](./INSTALLATION.md) 를 참고한다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 컨벤션
 
-## Deploy on Vercel
+[해당 문서](./CONVENTION.md) 를 참고한다.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 담당자
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/northfacegawd">
+            <img
+                src="https://avatars.githubusercontent.com/northfacegawd"
+            width="200px;"
+            />
+            <br />
+            <sub><b>이용준</b></sub>
+        </a>
+        <br />
+        </td>
+    </tr>
+</table>
+
+
