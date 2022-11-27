@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 import useUnReadCount from '@hooks/requests/get/useUnReadCount';
 import useChatRoomInfo from '@hooks/useChatInfo';
-import { ChatRoomWithUser, fetchCount } from '@requests/chat';
+import { ChatRoomWithUser } from '@models/chat';
 
 import {
   BorderAvatar,

@@ -1,11 +1,6 @@
 import axios from 'axios';
 
-import { User } from '@prisma/client';
-
-interface UsersResponse {
-  userList: User[];
-  ok: boolean;
-}
+import { UsersResponse } from '@models/user';
 
 export const fetchUsers = async (email?: string) => {
   const { data } = await axios.get<UsersResponse>('/api/user/find', {

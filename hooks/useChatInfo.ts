@@ -1,8 +1,8 @@
 import { useSession } from 'next-auth/react';
 import { useCallback } from 'react';
 
+import { ChatRoomWithUser } from '@models/chat';
 import { User } from '@prisma/client';
-import { ChatRoomWithUser } from '@requests/chat';
 
 const useChatRoomInfo = (chatRoom: ChatRoomWithUser) => {
   const session = useSession();
