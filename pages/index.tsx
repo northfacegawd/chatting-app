@@ -1,4 +1,6 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
+import { withAuth } from 'next-auth/middleware';
+import { getSession } from 'next-auth/react';
 import React from 'react';
 
 import { EmptyChatContents } from '@components/chat/contents/index.style';
@@ -23,3 +25,20 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+};
