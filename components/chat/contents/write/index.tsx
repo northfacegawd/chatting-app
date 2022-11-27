@@ -1,10 +1,11 @@
-import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import useMutation from '@hooks/useMutation';
 import Button from '@mui/material/Button';
+import { Chat } from '@prisma/client';
 
 import { ActionBox, MessageArea, WriteForm } from './index.style';
 
@@ -16,15 +17,13 @@ export default function Write() {
   const { register, handleSubmit, reset } = useForm<WriteFormData>();
   const { data: session } = useSession();
   const router = useRouter();
+  const [mutation, { loading }] = useMutation<Chat>('/api/chat');
 
   const onSubmit = async (data: WriteFormData) => {
-    if (!data.message.trim()) return;
-    const chatData = {
-      email: session?.user?.email,
-      message: data.message,
-      chatRoomId: router.query.chatRoomId?.toString(),
-    };
-    await axios.post('/api/chat', chatData);
+    const email = session?.user?.email;
+    const chatRoomId = router.query.chatRoomId?.toString();
+    if (!data.message.trim() || !email || !chatRoomId) return;
+    await mutation({ email, chatRoomId, ...data });
     reset();
   };
 
@@ -35,7 +34,7 @@ export default function Write() {
         placeholder="내용을 작성해 주세요."
       />
       <ActionBox>
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" disabled={loading}>
           보내기
         </Button>
       </ActionBox>

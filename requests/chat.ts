@@ -31,3 +31,19 @@ export const createChatRoom = async (email: string) => {
   );
   return data.chatRoom;
 };
+
+export interface PostChatData {
+  email: string;
+  chatRoomId: string;
+  message: string;
+}
+
+interface PostChatResponse {
+  chat: Chat;
+  ok: boolean;
+}
+
+export const postChat = async (chatData: PostChatData) => {
+  const { data } = await axios.post<PostChatResponse>('/api/chat', chatData);
+  return data.chat;
+};
