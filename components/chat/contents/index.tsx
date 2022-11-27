@@ -1,7 +1,9 @@
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 import useChatConnect from '@hooks/requests/get/useChatConnect';
+import useChatRoom from '@hooks/requests/get/useChatRoom';
 
 import ChatMessage from '../message';
 import {
@@ -15,6 +17,7 @@ import Write from './write';
 export default function ChatContents() {
   const router = useRouter();
   const { chats } = useChatConnect(router.query.chatRoomId?.toString() ?? '');
+  const { data } = useChatRoom(router.query.chatRoomId?.toString() ?? '');
 
   const moveHome = () => router.push('/');
 
@@ -22,7 +25,11 @@ export default function ChatContents() {
     <ChatContentsWrapper>
       <ChatRoomInfo>
         <BackButton onClick={moveHome} />
-        <p>최예슬(chuck5732590@gmail.com)</p>
+        {data && (
+          <p>
+            {data.users[0].name} ({data.users[0].email})
+          </p>
+        )}
       </ChatRoomInfo>
       <ChatsBox>
         {chats.map((chat) => (

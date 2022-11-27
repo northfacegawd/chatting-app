@@ -72,3 +72,13 @@ export const fetchCount = async (id?: string) => {
   });
   return data.unReadCount;
 };
+
+interface ChatRoomResponse {
+  ok: boolean;
+  chatRoom: ChatRoomWithUser;
+}
+
+export const fetchChatRoom = async (id: string) => {
+  const { data } = await axios.get<ChatRoomResponse>(`/api/chat/room/${id}`);
+  return data.chatRoom;
+};
