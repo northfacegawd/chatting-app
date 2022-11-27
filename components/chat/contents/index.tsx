@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import useChatConnect from '@hooks/useChatConnect';
-import useChats from '@hooks/useChats';
 
 import ChatMessage from '../message';
 import {
@@ -15,8 +14,7 @@ import Write from './write';
 
 export default function ChatContents() {
   const router = useRouter();
-  const { data } = useChats(router.query.chatRoomId?.toString() ?? '');
-  const { chats } = useChatConnect(data);
+  const { chats } = useChatConnect(router.query.chatRoomId?.toString() ?? '');
 
   const moveHome = () => router.push('/');
 

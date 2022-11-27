@@ -15,7 +15,7 @@ interface ChatMessageProps extends ChatWithUser {}
 export default function ChatMessage({ user, message }: ChatMessageProps) {
   return (
     <MessageWrapper>
-      <ChatAvatar src={user?.email ?? undefined} />
+      <ChatAvatar src={user?.image ?? undefined} />
       <MessageInfo>
         <Name>{user?.name}</Name>
         <Message

@@ -3,14 +3,15 @@ import SocketIOCLient from 'socket.io-client';
 
 import { ChatWithUser } from '@models/chat';
 
-const useChatConnect = (initialData: ChatWithUser[] = []) => {
-  const [chats, setChats] = useState<ChatWithUser[]>(initialData);
+import useChats from './useChats';
+
+const useChatConnect = (id: string) => {
+  const { data } = useChats(id);
+  const [chats, setChats] = useState<ChatWithUser[]>([]);
 
   useEffect(() => {
-    setChats(initialData);
-  }, [initialData]);
+    setChats(data ?? []);
 
-  useEffect(() => {
     const socket = SocketIOCLient('http://localhost:3000', {
       path: '/api/chat/socketio',
     }).connect();
@@ -26,7 +27,7 @@ const useChatConnect = (initialData: ChatWithUser[] = []) => {
     return () => {
       if (socket) socket.disconnect();
     };
-  }, []);
+  }, [data]);
 
   return { chats };
 };

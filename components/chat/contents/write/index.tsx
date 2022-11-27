@@ -14,9 +14,9 @@ interface WriteFormData {
 }
 
 export default function Write() {
+  const router = useRouter();
   const { register, handleSubmit, reset } = useForm<WriteFormData>();
   const { data: session } = useSession();
-  const router = useRouter();
   const [mutation, { loading }] = useMutation<Chat>('/api/chat');
 
   const onSubmit = async (data: WriteFormData) => {
