@@ -3,16 +3,13 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import { MessageData } from '@models/chat';
 import Button from '@mui/material/Button';
 
 import { ActionBox, MessageArea, WriteForm } from './index.style';
 
 interface WriteFormData {
   message: string;
-}
-interface MessageData {
-  message: string;
-  email: string;
 }
 
 interface WriteProps {
