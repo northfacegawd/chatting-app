@@ -13,7 +13,7 @@ interface WriteFormData {
   message: string;
 }
 
-export default function Write() {
+export default function Write({ onSendMesage }: any) {
   const router = useRouter();
   const { register, handleSubmit, reset } = useForm<WriteFormData>();
   const { data: session } = useSession();
@@ -23,7 +23,8 @@ export default function Write() {
     const email = session?.user?.email;
     const chatRoomId = router.query.chatRoomId?.toString();
     if (!data.message.trim() || !email || !chatRoomId) return;
-    await mutation({ email, chatRoomId, ...data });
+    // await mutation({ email, chatRoomId, ...data });
+    onSendMesage({ ...data, email });
     reset();
   };
 
