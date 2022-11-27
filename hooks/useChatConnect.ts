@@ -7,6 +7,10 @@ const useChatConnect = (initialData: ChatWithUser[] = []) => {
   const [chats, setChats] = useState<ChatWithUser[]>(initialData);
 
   useEffect(() => {
+    setChats(initialData);
+  }, [initialData]);
+
+  useEffect(() => {
     const socket = SocketIOCLient('http://localhost:3000', {
       path: '/api/chat/socketio',
     }).connect();
