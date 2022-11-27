@@ -7,6 +7,7 @@ const useChats = (id: string) => {
   return useQuery(['chats', id], fetchFn, {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
+    cacheTime: 0,
   });
 };
 

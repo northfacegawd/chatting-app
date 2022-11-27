@@ -12,6 +12,10 @@ const useChatConnect = (id: string) => {
 
   useEffect(() => {
     setChats(data ?? []);
+  }, [data]);
+
+  useEffect(() => {
+    if (!id) return;
 
     const mySocket = SocketIOCLient('http://localhost:3000', {
       path: '/api/chat/socketio',
@@ -23,7 +27,6 @@ const useChatConnect = (id: string) => {
       mySocket.emit('onJoinRoom', id);
 
       mySocket.on('onReceive', (chat: ChatWithUser) => {
-        if (chats.find((prevChat) => prevChat.id === chat.id)) return;
         setChats((prev) => prev.concat(chat));
       });
     });
@@ -33,9 +36,9 @@ const useChatConnect = (id: string) => {
     return () => {
       if (socket) socket.disconnect();
     };
-  }, [data]);
+  }, [id]);
 
-  const onSendMesage = ({
+  const onSendMessage = ({
     message,
     email,
   }: {
@@ -45,7 +48,7 @@ const useChatConnect = (id: string) => {
     socket?.emit('onSend', { message, email, chatRoomId: id });
   };
 
-  return { chats, onSendMesage };
+  return { chats, onSendMessage };
 };
 
 export default useChatConnect;

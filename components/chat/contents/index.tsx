@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -16,7 +15,7 @@ import Write from './write';
 
 export default function ChatContents() {
   const router = useRouter();
-  const { chats, onSendMesage } = useChatConnect(
+  const { chats, onSendMessage } = useChatConnect(
     router.query.chatRoomId?.toString() ?? '',
   );
   const { data } = useChatRoom(router.query.chatRoomId?.toString() ?? '');
@@ -38,7 +37,7 @@ export default function ChatContents() {
           <ChatMessage key={chat.id} {...chat} />
         ))}
       </ChatsBox>
-      <Write onSendMesage={onSendMesage} />
+      <Write onSendMessage={onSendMessage} />
     </ChatContentsWrapper>
   );
 }
