@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import ChatItem from '@components/chat';
-import useChatRooms from '@hooks/useChatRooms';
+import useChatRooms from '@hooks/requests/get/useChatRooms';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
 import Divider from '@mui/material/Divider';

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import useChatConnect from '@hooks/useChatConnect';
+import useChatConnect from '@hooks/requests/get/useChatConnect';
 
 import ChatMessage from '../message';
 import {

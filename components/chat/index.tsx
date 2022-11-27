@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
+import useUnReadCount from '@hooks/requests/get/useUnReadCount';
 import useChatRoomInfo from '@hooks/useChatInfo';
-import useUnReadCount from '@hooks/useUnReadCount';
 import { ChatRoomWithUser, fetchCount } from '@requests/chat';
 
 import {

@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 
 import ChatList from '@components/chat/list';
-import useChatRooms from '@hooks/useChatRooms';
-import useUnReadCount from '@hooks/useUnReadCount';
+import useChatRooms from '@hooks/requests/get/useChatRooms';
+import useUnReadCount from '@hooks/requests/get/useUnReadCount';
 import Add from '@mui/icons-material/Add';
 
 import CreateChatModal from '../create-chat-modal';
