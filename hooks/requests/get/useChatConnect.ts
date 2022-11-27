@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import SocketIOCLient, { Socket } from 'socket.io-client';
 
-import { ChatWithUser } from '@models/chat';
+import { ChatWithUser, MessageData } from '@models/chat';
 
 import useChats from './useChats';
 
@@ -25,10 +25,6 @@ const useChatConnect = (id: string) => {
       console.log('SOCKET CONNECTED!', mySocket.id);
 
       mySocket.emit('onJoinRoom', id);
-
-      mySocket.on('onReceive', (chat: ChatWithUser) => {
-        setChats((prev) => prev.concat(chat));
-      });
     });
 
     setSocket((prev) => prev || mySocket);
@@ -38,14 +34,14 @@ const useChatConnect = (id: string) => {
     };
   }, [id]);
 
-  const onSendMessage = ({
-    message,
-    email,
-  }: {
-    message: string;
-    email: string;
-  }) => {
-    socket?.emit('onSend', { message, email, chatRoomId: id });
+  useEffect(() => {
+    socket?.on('onReceive', (chat: ChatWithUser) => {
+      setChats((prev) => prev.concat(chat));
+    });
+  }, [socket]);
+
+  const onSendMessage = (messageData: MessageData) => {
+    socket?.emit('onSend', { ...messageData, chatRoomId: id });
   };
 
   return { chats, onSendMessage };
