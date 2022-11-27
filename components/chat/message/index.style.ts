@@ -2,33 +2,20 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Avatar from '@mui/material/Avatar';
 
-interface MessageProps {
-  position: 'left' | 'right';
-}
-
-export const MessageWrapper = styled.div<MessageProps>`
+export const MessageWrapper = styled.div`
   position: relative;
   display: flex;
-  flex-direction: ${({ position }) =>
-    position === 'left' ? 'row' : 'row-reverse'};
   padding: 0.5em 0;
 `;
 
-export const MessageInfo = styled.div<MessageProps>`
+export const MessageInfo = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 50px;
-  ${({ position }) =>
-    position === 'left'
-      ? css`
-          align-items: flex-start;
-        `
-      : css`
-          align-items: flex-end;
-        `}
+  align-items: flex-start;
 `;
 
-export const Name = styled.span<MessageProps>`
+export const Name = styled.span`
   display: inline-block;
   font-weight: 600;
   height: 40px;

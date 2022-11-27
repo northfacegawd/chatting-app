@@ -7,7 +7,7 @@ import withHandler from '@lib/server/with-handler';
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
   try {
-    const chatList = await client.chatRoom.findMany({
+    const chatRooms = await client.chatRoom.findMany({
       where: {
         users: {
           some: {
@@ -15,12 +15,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           },
         },
       },
-      include: {
-        chats: true,
-        users: true,
+      select: {
+        id: true,
+        chats: {
+          take: 1,
+        },
+        users: {
+          where: {
+            email: {
+              not: session?.user?.email,
+            },
+          },
+          select: {
+            image: true,
+            name: true,
+            email: true,
+          },
+        },
       },
     });
-    return res.status(200).json({ ok: true, chatList });
+    return res.status(200).json({ ok: true, chatRooms });
   } catch (error) {
     return res.status(400).json({ ok: false, error });
   }

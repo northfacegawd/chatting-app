@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import ChevronLeft from '@components/common/icons/chevron-left';
+import useChatConnect from '@hooks/useChatConnect';
 
 import ChatMessage from '../message';
 import {
@@ -14,6 +14,7 @@ import Write from './write';
 
 export default function ChatContents() {
   const router = useRouter();
+  const { chats } = useChatConnect(router.query.chatRoomId?.toString() ?? '');
 
   const moveHome = () => router.push('/');
 
@@ -24,8 +25,9 @@ export default function ChatContents() {
         <p>최예슬(chuck5732590@gmail.com)</p>
       </ChatRoomInfo>
       <ChatsBox>
-        <ChatMessage position="left" />
-        <ChatMessage position="right" />
+        {chats.map((chat) => (
+          <ChatMessage key={chat.id} {...chat} />
+        ))}
       </ChatsBox>
       <Write />
     </ChatContentsWrapper>

@@ -1,7 +1,11 @@
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import useMutation from '@hooks/useMutation';
 import Button from '@mui/material/Button';
+import { Chat } from '@prisma/client';
 
 import { ActionBox, MessageArea, WriteForm } from './index.style';
 
@@ -10,10 +14,17 @@ interface WriteFormData {
 }
 
 export default function Write() {
-  const { register, handleSubmit } = useForm<WriteFormData>();
+  const router = useRouter();
+  const { register, handleSubmit, reset } = useForm<WriteFormData>();
+  const { data: session } = useSession();
+  const [mutation, { loading }] = useMutation<Chat>('/api/chat');
 
   const onSubmit = async (data: WriteFormData) => {
-    console.log(data);
+    const email = session?.user?.email;
+    const chatRoomId = router.query.chatRoomId?.toString();
+    if (!data.message.trim() || !email || !chatRoomId) return;
+    await mutation({ email, chatRoomId, ...data });
+    reset();
   };
 
   return (
@@ -23,7 +34,7 @@ export default function Write() {
         placeholder="내용을 작성해 주세요."
       />
       <ActionBox>
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" disabled={loading}>
           보내기
         </Button>
       </ActionBox>
