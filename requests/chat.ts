@@ -18,13 +18,13 @@ interface CreateChatRoomResponse {
 }
 
 export const fetchChatList = async () => {
-  const { data } = await axios.get<ChatListResponse>('/api/chat/list');
+  const { data } = await axios.get<ChatListResponse>('/api/chat/room/list');
   return data.chatList;
 };
 
 export const createChatRoom = async (email: string) => {
   const { data } = await axios.post<CreateChatRoomResponse>(
-    '/api/chat/create',
+    '/api/chat/room/create',
     {
       email,
     },

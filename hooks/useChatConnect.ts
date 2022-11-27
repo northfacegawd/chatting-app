@@ -3,8 +3,8 @@ import SocketIOCLient from 'socket.io-client';
 
 import { ChatWithUser } from '@models/chat';
 
-const useChatConnect = () => {
-  const [chats, setChats] = useState<ChatWithUser[]>([]);
+const useChatConnect = (initialData: ChatWithUser[] = []) => {
+  const [chats, setChats] = useState<ChatWithUser[]>(initialData);
 
   useEffect(() => {
     const socket = SocketIOCLient('http://localhost:3000', {
