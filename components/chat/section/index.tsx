@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 
 import ChatList from '@components/chat/list';
+import useChatRooms from '@hooks/useChatRooms';
+import useUnReadCount from '@hooks/useUnReadCount';
 import Add from '@mui/icons-material/Add';
 
 import CreateChatModal from '../create-chat-modal';
@@ -13,6 +15,7 @@ import {
 } from './index.style';
 
 export default function ChatSection() {
+  const { data } = useUnReadCount();
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
 
@@ -24,7 +27,7 @@ export default function ChatSection() {
     <>
       <ChatSectionWrapper home={router.pathname === '/'}>
         <ChatSectionHeader>
-          <ChatCount>안 읽은 대화(2)</ChatCount>
+          <ChatCount>안 읽은 대화({data})</ChatCount>
           <CreateChatButton
             onClick={() => setOpen(true)}
             variant="contained"
