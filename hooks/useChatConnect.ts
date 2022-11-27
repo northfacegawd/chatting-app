@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import SocketIOCLient from 'socket.io-client';
 
-import { Chat } from '@prisma/client';
+import { ChatWithUser } from '@models/chat';
 
 const useChatConnect = () => {
-  const [chats, setChats] = useState<Chat[]>([]);
+  const [chats, setChats] = useState<ChatWithUser[]>([]);
 
   useEffect(() => {
     const socket = SocketIOCLient('http://localhost:3000', {
@@ -15,7 +15,7 @@ const useChatConnect = () => {
       console.log('SOCKET CONNECTED!', socket.id);
     });
 
-    socket.on('chat', (chat: Chat) => {
+    socket.on('chat', (chat: ChatWithUser) => {
       setChats((prev) => prev.concat(chat));
     });
 

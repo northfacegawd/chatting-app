@@ -3,6 +3,7 @@ import React from 'react';
 
 import useChatConnect from '@hooks/useChatConnect';
 
+import ChatMessage from '../message';
 import {
   BackButton,
   ChatContentsWrapper,
@@ -25,12 +26,8 @@ export default function ChatContents() {
       </ChatRoomInfo>
       <ChatsBox>
         {chats.map((chat) => (
-          <React.Fragment key={chat.message}>
-            {JSON.stringify(chat)}
-          </React.Fragment>
+          <ChatMessage key={chat.id} {...chat} />
         ))}
-        {/* <ChatMessage position="left" />
-        <ChatMessage position="right" /> */}
       </ChatsBox>
       <Write />
     </ChatContentsWrapper>

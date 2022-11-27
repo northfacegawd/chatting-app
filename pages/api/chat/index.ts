@@ -22,8 +22,8 @@ async function handler(req: NextApiRequest, res: NextApiResponseServerIO) {
           },
         },
       },
+      include: { user: true },
     });
-
     res.socket.server.io.emit('chat', chat);
     res.status(200).json({ ok: true, chat });
   } catch (error) {
