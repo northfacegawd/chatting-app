@@ -13,17 +13,15 @@ import {
   Time,
 } from './index.style';
 
-interface ChatItemProps extends ChatRoomWithUser {}
-
 export default function ChatItem(props: ChatRoomWithUser) {
-  const { id } = props;
+  const { id, users } = props;
   const { date, lastMessage, name } = useChatRoomInfo(props);
   const router = useRouter();
 
   return (
     <Link href={`/${id}`}>
       <ChatItemWrapper active={id === router.query?.chatRoomId}>
-        <BorderAvatar alt="Default" src="/images/avatar.svg" />
+        <BorderAvatar alt="Default" src={users[0].image ?? undefined} />
         <MessageInfo>
           <Name>{name}</Name>
           {date && <Time>{date}</Time>}
