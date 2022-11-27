@@ -23,8 +23,11 @@ export const fetchChatList = async () => {
 };
 
 export const createChatRoom = async (email: string) => {
-  const { data } = await axios.post<CreateChatRoomResponse>('/api/chat', {
-    email,
-  });
+  const { data } = await axios.post<CreateChatRoomResponse>(
+    '/api/chat/create',
+    {
+      email,
+    },
+  );
   return data.chatRoom;
 };

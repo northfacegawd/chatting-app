@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -10,10 +11,13 @@ interface WriteFormData {
 }
 
 export default function Write() {
-  const { register, handleSubmit } = useForm<WriteFormData>();
+  const { register, handleSubmit, reset } = useForm<WriteFormData>();
 
   const onSubmit = async (data: WriteFormData) => {
-    console.log(data);
+    if (data.message.trim()) {
+      await axios.post('/api/chat', data);
+      reset();
+    }
   };
 
   return (
