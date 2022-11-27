@@ -4,7 +4,7 @@ import { fetchChatRooms } from '@requests/chat';
 
 const useChatRooms = () => {
   const fetchFn = () => fetchChatRooms();
-  return useQuery('chatList', fetchFn);
+  return useQuery(['chatRooms'], fetchFn);
 };
 
 export default useChatRooms;

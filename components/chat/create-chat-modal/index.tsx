@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
+import { useQueryClient } from 'react-query';
 
 import SearchUser from '@components/common/search-user';
 import useCreateChatRoom from '@hooks/requests/post/useCreateChatRoom';
@@ -23,9 +24,11 @@ export default function CreateChatModal({
   onClose,
 }: CreateChatModalProps) {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [selectedEmail, setSelectedEmail] = useState<string>('');
   const { isLoading, mutate, isError } = useCreateChatRoom(selectedEmail, {
     onSuccess: (chatRoom) => {
+      queryClient.invalidateQueries(['chatRooms']);
       router.push(`/${chatRoom.id}`);
       onClose();
     },
