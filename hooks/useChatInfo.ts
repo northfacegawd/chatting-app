@@ -16,7 +16,6 @@ const useChatRoomInfo = (chatRoom: ChatRoomWithUser) => {
   const data = {
     date: chatRoom.chats[0]?.createAt?.toISOString?.(),
     name: getName(chatRoom.users),
-    unReadMessage: chatRoom.chats.filter((chat) => !chat.isRead).length,
     lastMessage: chatRoom.chats[0]?.message,
   };
 

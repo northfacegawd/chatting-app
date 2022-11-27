@@ -13,12 +13,14 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         where: {
           chatRoomId,
           AND: {
-            isRead: {
-              equals: false,
-            },
             user: {
               email: {
                 not: session?.user?.email,
+              },
+            },
+            ChatRoom: {
+              exitDate: {
+                lte: new Date(),
               },
             },
           },
@@ -28,11 +30,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
     const unReadCount = await client.chatRoom.count({
       where: {
+        exitDate: {
+          lte: new Date(),
+        },
         chats: {
           some: {
-            isRead: {
-              equals: false,
-            },
             AND: {
               user: {
                 email: {
