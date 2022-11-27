@@ -4,10 +4,6 @@ import styled from '@emotion/styled';
 export const ChatContentsWrapper = styled.section`
   position: relative;
   width: 100%;
-`;
-
-export const ChatsBox = styled.div`
-  padding: 1rem;
   animation: fadein 300ms ease-out;
   @keyframes fadein {
     from {
@@ -19,6 +15,12 @@ export const ChatsBox = styled.div`
       opacity: 1;
     }
   }
+`;
+
+export const ChatsBox = styled.div`
+  padding: 1rem;
+  max-height: 65vh;
+  overflow: auto;
 `;
 
 export const ChatRoomInfo = styled.div`
