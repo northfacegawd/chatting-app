@@ -67,12 +67,12 @@ model Chat {
   userId     String
   ChatRoom   ChatRoom? @relation(fields: [chatRoomId], references: [id], onDelete: Cascade)
   chatRoomId String?
-  isRead     Boolean   @default(false)
 }
 
 model ChatRoom {
   id       String   @id @default(cuid())
   createAt DateTime @default(now())
+  exitDate DateTime @default(now())
   chats    Chat[]
   users    User[]
 }
