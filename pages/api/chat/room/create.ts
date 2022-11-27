@@ -14,7 +14,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         users: {
           some: {
             email: {
-              in: [session?.user?.email, opponentEmail],
+              in: [session?.user?.email ?? ''],
+            },
+          },
+        },
+        AND: {
+          users: {
+            some: {
+              email: {
+                in: [opponentEmail],
+              },
             },
           },
         },
