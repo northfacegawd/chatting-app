@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from '@mui/material/Button';
@@ -12,12 +14,18 @@ interface WriteFormData {
 
 export default function Write() {
   const { register, handleSubmit, reset } = useForm<WriteFormData>();
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const onSubmit = async (data: WriteFormData) => {
-    if (data.message.trim()) {
-      await axios.post('/api/chat', data);
-      reset();
-    }
+    if (!data.message.trim()) return;
+    const chatData = {
+      email: session?.user?.email,
+      message: data.message,
+      chatRoomId: router.query.chatRoomId?.toString(),
+    };
+    await axios.post('/api/chat', chatData);
+    reset();
   };
 
   return (

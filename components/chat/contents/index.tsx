@@ -28,7 +28,7 @@ export default function ChatContents() {
       console.log('SOCKET CONNECTED!', socket.id);
     });
 
-    socket.on('message', (chat: Chat) => {
+    socket.on('chat', (chat: Chat) => {
       setChats((prev) => prev.concat(chat));
     });
 
@@ -43,7 +43,9 @@ export default function ChatContents() {
       </ChatRoomInfo>
       <ChatsBox>
         {chats.map((chat) => (
-          <React.Fragment key={chat.id}>{JSON.stringify(chat)}</React.Fragment>
+          <React.Fragment key={chat.message}>
+            {JSON.stringify(chat)}
+          </React.Fragment>
         ))}
         {/* <ChatMessage position="left" />
         <ChatMessage position="right" /> */}

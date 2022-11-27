@@ -1,12 +1,33 @@
 import { NextApiResponseServerIO } from 'chat';
 import { NextApiRequest } from 'next';
 
-async function handler(req: NextApiRequest, res: NextApiResponseServerIO) {
-  if (req.method === 'POST') {
-    const message = req.body;
+import client from '@lib/server/prismadb';
 
-    res.socket.server.io.emit('message', message);
-    res.status(201).json(message);
+async function handler(req: NextApiRequest, res: NextApiResponseServerIO) {
+  if (req.method !== 'POST') return;
+  try {
+    const { email, message, chatRoomId } = req.body;
+
+    const chat = await client.chat.create({
+      data: {
+        message,
+        ChatRoom: {
+          connect: {
+            id: chatRoomId,
+          },
+        },
+        user: {
+          connect: {
+            email,
+          },
+        },
+      },
+    });
+
+    res.socket.server.io.emit('chat', chat);
+    res.status(200).json({ ok: true, chat });
+  } catch (error) {
+    res.status(400).json({ ok: false, error });
   }
 }
 
