@@ -13,6 +13,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         where: {
           email: { not: session?.user?.email },
         },
+        select: {
+          email: true,
+          name: true,
+        },
         take: 20,
       });
       return res.status(200).json({ ok: true, userList: randomUser });
@@ -25,6 +29,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             email: session?.user?.email,
           },
         },
+      },
+      select: {
+        email: true,
+        name: true,
       },
       take: 20,
     });

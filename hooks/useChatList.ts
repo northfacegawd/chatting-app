@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 
-import { fetchChatList } from '@requests/chat';
+import { fetchChatRooms } from '@requests/chat';
 
 const useChatList = () => {
-  const fetchFn = () => fetchChatList();
+  const fetchFn = () => fetchChatRooms();
   return useQuery('chatList', fetchFn);
 };
 

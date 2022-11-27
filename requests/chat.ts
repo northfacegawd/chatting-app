@@ -7,8 +7,8 @@ export interface ChatRoomWithUser extends ChatRoom {
   chats: Chat[];
 }
 
-interface ChatListResponse {
-  chatList: ChatRoomWithUser[];
+interface ChatRoomsResponse {
+  chatRooms: ChatRoomWithUser[];
   ok: boolean;
 }
 
@@ -17,9 +17,9 @@ interface CreateChatRoomResponse {
   ok: boolean;
 }
 
-export const fetchChatList = async () => {
-  const { data } = await axios.get<ChatListResponse>('/api/chat/room/list');
-  return data.chatList;
+export const fetchChatRooms = async () => {
+  const { data } = await axios.get<ChatRoomsResponse>('/api/chat/room/list');
+  return data.chatRooms;
 };
 
 export const createChatRoom = async (email: string) => {
